@@ -1,5 +1,12 @@
-const persons = require("../models/persons");
+const contact = require("../models/person");
 
 exports.get = (req, res) => {
-  res.send(`Phonebook has info for ${persons.length} people</br>${new Date()}`);
+  contact
+    .find({})
+    .then((result) => {
+      res.send(
+        `Phonebook has info for ${result.length} people</br>${new Date()}`
+      );
+    })
+    .catch((err) => res.status(404).end());
 };

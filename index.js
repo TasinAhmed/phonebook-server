@@ -1,10 +1,22 @@
+require("dotenv").config();
 const morgan = require("morgan");
 const express = require("express");
 const app = express();
 const persons = require("./routes/persons");
 const info = require("./routes/info");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
+
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((res) => {
+    console.log(`Connection Successful ${res}`);
+  })
+  .catch((err) => console.log(`Error in DB connection ${err}`));
 
 morgan.token("body", function (req, res) {
   return req.body ? JSON.stringify(req.body) : "";
