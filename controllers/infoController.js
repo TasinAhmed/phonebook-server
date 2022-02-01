@@ -1,4 +1,4 @@
-const contact = require("../models/person");
+const contact = require('../models/person')
 
 exports.get = (req, res) => {
   contact
@@ -6,7 +6,7 @@ exports.get = (req, res) => {
     .then((result) => {
       res.send(
         `Phonebook has info for ${result.length} people</br>${new Date()}`
-      );
+      )
     })
-    .catch((err) => res.status(404).end());
-};
+    .catch(() => res.status(404).end())
+}
