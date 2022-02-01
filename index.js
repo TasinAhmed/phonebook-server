@@ -6,6 +6,8 @@ const persons = require("./routes/persons");
 const info = require("./routes/info");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const errorController = require("./controllers/errorController");
+const unknownRouteController = require("./controllers/unknownRouteController");
 const PORT = process.env.PORT || 3001;
 
 mongoose
@@ -31,6 +33,8 @@ app.use(cors());
 
 app.use("/api/persons", persons);
 app.use("/info", info);
+app.use(unknownRouteController);
+app.use(errorController);
 
 app.listen(PORT, () =>
   console.log(`Server is running on http://localhost:${PORT}`)

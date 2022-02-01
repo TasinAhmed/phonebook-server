@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const contactSchema = new mongoose.Schema({
   name: String,
   number: String,
+  nameSearch: String,
 });
 
 contactSchema.set("toJSON", {
